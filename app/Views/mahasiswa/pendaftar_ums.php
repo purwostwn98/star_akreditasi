@@ -56,7 +56,7 @@
                 <div data-v-724592ca="" class="white-box">
                     <div data-v-724592ca="" class="table-responsive">
                         <table data-v-724592ca="" id="mhs-nilai-aik" class="table">
-                            <thead class="text-white bg-dark text-center">
+                            <thead class="text-white bg-primary text-center">
                                 <tr data-v-724592ca="">
                                     <th data-v-724592ca="">Provinsi</th>
                                     <th data-v-724592ca="">Pendaftar</th>

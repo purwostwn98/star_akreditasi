@@ -13,7 +13,7 @@
                 </div>
                 <div class="table-responsive">
                     <table id="mhs-perangkatan" class="table">
-                        <thead class="bg-dark text-white">
+                        <thead class="bg-primary text-white">
                             <tr>
                                 <th rowspan="2">Tahun Masuk</th>
                                 <th colspan="7" class="text-center">Jumlah Mahasiswa per Angkatan</th>

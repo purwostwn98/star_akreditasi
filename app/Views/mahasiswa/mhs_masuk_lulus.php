@@ -15,7 +15,7 @@
                 <div class="table-responsive">
                     <div data-v-5b7f5439="" class="table-responsive">
                         <table data-v-5b7f5439="" id="mhs-perangkatan" class="table">
-                            <thead data-v-5b7f5439="" class="text-center bg-dark text-white">
+                            <thead data-v-5b7f5439="" class="text-center bg-primary text-white">
                                 <tr data-v-5b7f5439="">
                                     <th data-v-5b7f5439="" rowspan="2">Tahun Akademik</th>
                                     <th data-v-5b7f5439="" rowspan="2">Daya Tampung</th>
