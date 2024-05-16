@@ -8,6 +8,8 @@ class Dinamis extends BaseController
     {
         if ($this->request->isAJAX()) {
             $tahun = $this->request->getPost('tahun');
+            $prodi = $this->request->getPost('prodi');
+            $jenjang = $this->request->getPost('jenjang');
             // $tahun = 25;
             $tahun_6 = intval($tahun) - 6;
 
@@ -129,6 +131,10 @@ class Dinamis extends BaseController
 
     public function load_masuk_lulus()
     {
+        $tahun = $this->request->getPost('tahun');
+        $prodi = $this->request->getPost('prodi');
+        $jenjang = $this->request->getPost('jenjang');
+
         $data = array(
             "success" => true,
             "result" => array(
@@ -280,7 +286,6 @@ class Dinamis extends BaseController
             )
         );
 
-        $tahun = $this->request->getPost('tahun');
         // $tahun = 25;
         $tahun_6 = intval($tahun) - 4;
         $urut = 4;
@@ -629,6 +634,12 @@ class Dinamis extends BaseController
 
         // $arr_prodi = [];
         $opt = "";
+        if ($jenjang == 'all') {
+            $label_jenjang = "";
+        } else {
+            $label_jenjang = strtoupper(strval($jenjang));
+        }
+        $opt .=  '<option value="all">Semua Prodi ' . $label_jenjang . '</option>';
         foreach ($prodi as $key => $value) {
             if ($jenjang == 'all') {
                 $opt .=  '<option value="' . $value['id'] . '">' . $value['ket'] . '</option>';
@@ -650,6 +661,11 @@ class Dinamis extends BaseController
 
     public function load_nilai_aik()
     {
+        $tahun = $this->request->getPost('tahun');
+        $prodi = $this->request->getPost('prodi');
+        $jenjang = $this->request->getPost('jenjang');
+
+
         $data = [
             "success" => true,
             "hasil" => [
@@ -784,8 +800,6 @@ class Dinamis extends BaseController
             ]
         ];
 
-        $tahun = $this->request->getPost('tahun');
-
         $th = "";
         foreach ($data['hasil']['mk'] as $key => $v) {
             $th .= '<th data-v-724592ca="">' . $v['ket'] . '</th>';
@@ -823,6 +837,10 @@ class Dinamis extends BaseController
 
     public function load_nilai_mkdu()
     {
+        $tahun = $this->request->getPost('tahun');
+        $prodi = $this->request->getPost('prodi');
+        $jenjang = $this->request->getPost('jenjang');
+
         $data = [
             "success" => true,
             "hasil" => [
@@ -1033,8 +1051,6 @@ class Dinamis extends BaseController
             ]
         ];
 
-        $tahun = $this->request->getPost('tahun');
-
         $th = "";
         foreach ($data['hasil']['mk'] as $key => $v) {
             $th .= '<th data-v-724592ca="">' . $v['ket'] . '</th>';
@@ -1068,5 +1084,703 @@ class Dinamis extends BaseController
 
         ];
         echo json_encode($data);
+    }
+
+    public function load_pendaftar_mahasiswa()
+    {
+        $tahun = $this->request->getPost('tahun');
+        $jenjang = $this->request->getPost('jenjang');
+        $prodi = $this->request->getPost('prodi');
+
+        $data = [
+            "success" => true,
+            "provinsi" => [
+                [
+                    "FKDPROP" => 11,
+                    "FPROPINSI" => "Nangro Aceh Darussalam",
+                    "Jumlah_Pendaftar" => 22,
+                    "Jumlah_Diterima" => 22,
+                    "Jumlah_Regristrasi" => 22
+                ],
+                [
+                    "FKDPROP" => 12,
+                    "FPROPINSI" => "Sumatra Utara",
+                    "Jumlah_Pendaftar" => 28,
+                    "Jumlah_Diterima" => 25,
+                    "Jumlah_Regristrasi" => 25
+                ],
+                [
+                    "FKDPROP" => 13,
+                    "FPROPINSI" => "Sumatra Barat",
+                    "Jumlah_Pendaftar" => 24,
+                    "Jumlah_Diterima" => 23,
+                    "Jumlah_Regristrasi" => 23
+                ],
+                [
+                    "FKDPROP" => 14,
+                    "FPROPINSI" => "Riau",
+                    "Jumlah_Pendaftar" => 59,
+                    "Jumlah_Diterima" => 57,
+                    "Jumlah_Regristrasi" => 57
+                ],
+                [
+                    "FKDPROP" => 15,
+                    "FPROPINSI" => "Jambi",
+                    "Jumlah_Pendaftar" => 49,
+                    "Jumlah_Diterima" => 45,
+                    "Jumlah_Regristrasi" => 45
+                ],
+                [
+                    "FKDPROP" => 16,
+                    "FPROPINSI" => "Sumatra Selatan",
+                    "Jumlah_Pendaftar" => 67,
+                    "Jumlah_Diterima" => 62,
+                    "Jumlah_Regristrasi" => 62
+                ],
+                [
+                    "FKDPROP" => 17,
+                    "FPROPINSI" => "Bengkulu",
+                    "Jumlah_Pendaftar" => 29,
+                    "Jumlah_Diterima" => 28,
+                    "Jumlah_Regristrasi" => 28
+                ],
+                [
+                    "FKDPROP" => 18,
+                    "FPROPINSI" => "Lampung",
+                    "Jumlah_Pendaftar" => 100,
+                    "Jumlah_Diterima" => 92,
+                    "Jumlah_Regristrasi" => 92
+                ],
+                [
+                    "FKDPROP" => 19,
+                    "FPROPINSI" => "Bangka Belitung",
+                    "Jumlah_Pendaftar" => 17,
+                    "Jumlah_Diterima" => 17,
+                    "Jumlah_Regristrasi" => 17
+                ],
+                [
+                    "FKDPROP" => 21,
+                    "FPROPINSI" => "Kepulauan Riau ",
+                    "Jumlah_Pendaftar" => 33,
+                    "Jumlah_Diterima" => 30,
+                    "Jumlah_Regristrasi" => 30
+                ],
+                [
+                    "FKDPROP" => 30,
+                    "FPROPINSI" => "Banten",
+                    "Jumlah_Pendaftar" => 0,
+                    "Jumlah_Diterima" => 0,
+                    "Jumlah_Regristrasi" => 0
+                ],
+                [
+                    "FKDPROP" => 31,
+                    "FPROPINSI" => "DKI Jakarta",
+                    "Jumlah_Pendaftar" => 60,
+                    "Jumlah_Diterima" => 54,
+                    "Jumlah_Regristrasi" => 54
+                ],
+                [
+                    "FKDPROP" => 32,
+                    "FPROPINSI" => "Jawa Barat",
+                    "Jumlah_Pendaftar" => 336,
+                    "Jumlah_Diterima" => 293,
+                    "Jumlah_Regristrasi" => 293
+                ],
+                [
+                    "FKDPROP" => 33,
+                    "FPROPINSI" => "Jawa Tengah",
+                    "Jumlah_Pendaftar" => 6633,
+                    "Jumlah_Diterima" => 5700,
+                    "Jumlah_Regristrasi" => 5700
+                ],
+                [
+                    "FKDPROP" => 34,
+                    "FPROPINSI" => "DI Yogyakarta",
+                    "Jumlah_Pendaftar" => 153,
+                    "Jumlah_Diterima" => 126,
+                    "Jumlah_Regristrasi" => 126
+                ],
+                [
+                    "FKDPROP" => 35,
+                    "FPROPINSI" => "Jawa Timur",
+                    "Jumlah_Pendaftar" => 920,
+                    "Jumlah_Diterima" => 806,
+                    "Jumlah_Regristrasi" => 806
+                ],
+                [
+                    "FKDPROP" => 36,
+                    "FPROPINSI" => "Banten",
+                    "Jumlah_Pendaftar" => 114,
+                    "Jumlah_Diterima" => 103,
+                    "Jumlah_Regristrasi" => 103
+                ],
+                [
+                    "FKDPROP" => 51,
+                    "FPROPINSI" => "Bali",
+                    "Jumlah_Pendaftar" => 11,
+                    "Jumlah_Diterima" => 11,
+                    "Jumlah_Regristrasi" => 11
+                ],
+                [
+                    "FKDPROP" => 52,
+                    "FPROPINSI" => "Nusa Tenggara Barat",
+                    "Jumlah_Pendaftar" => 40,
+                    "Jumlah_Diterima" => 34,
+                    "Jumlah_Regristrasi" => 34
+                ],
+                [
+                    "FKDPROP" => 53,
+                    "FPROPINSI" => "Nusa Tenggara Timur",
+                    "Jumlah_Pendaftar" => 26,
+                    "Jumlah_Diterima" => 21,
+                    "Jumlah_Regristrasi" => 21
+                ],
+                [
+                    "FKDPROP" => 61,
+                    "FPROPINSI" => "Kalimantan Barat",
+                    "Jumlah_Pendaftar" => 35,
+                    "Jumlah_Diterima" => 30,
+                    "Jumlah_Regristrasi" => 30
+                ],
+                [
+                    "FKDPROP" => 62,
+                    "FPROPINSI" => "Kalimantan Tengah",
+                    "Jumlah_Pendaftar" => 54,
+                    "Jumlah_Diterima" => 50,
+                    "Jumlah_Regristrasi" => 50
+                ],
+                [
+                    "FKDPROP" => 63,
+                    "FPROPINSI" => "Kalimantan Selatan",
+                    "Jumlah_Pendaftar" => 68,
+                    "Jumlah_Diterima" => 62,
+                    "Jumlah_Regristrasi" => 62
+                ],
+                [
+                    "FKDPROP" => 64,
+                    "FPROPINSI" => "Kalimantan Timur",
+                    "Jumlah_Pendaftar" => 52,
+                    "Jumlah_Diterima" => 45,
+                    "Jumlah_Regristrasi" => 45
+                ],
+                [
+                    "FKDPROP" => 65,
+                    "FPROPINSI" => "Kalimantan Utara",
+                    "Jumlah_Pendaftar" => 19,
+                    "Jumlah_Diterima" => 18,
+                    "Jumlah_Regristrasi" => 18
+                ],
+                [
+                    "FKDPROP" => 70,
+                    "FPROPINSI" => "Gorontalo",
+                    "Jumlah_Pendaftar" => 0,
+                    "Jumlah_Diterima" => 0,
+                    "Jumlah_Regristrasi" => 0
+                ],
+                [
+                    "FKDPROP" => 71,
+                    "FPROPINSI" => "Sulawesi Utara",
+                    "Jumlah_Pendaftar" => 11,
+                    "Jumlah_Diterima" => 10,
+                    "Jumlah_Regristrasi" => 10
+                ],
+                [
+                    "FKDPROP" => 72,
+                    "FPROPINSI" => "Sulawesi Tengah",
+                    "Jumlah_Pendaftar" => 7,
+                    "Jumlah_Diterima" => 6,
+                    "Jumlah_Regristrasi" => 6
+                ],
+                [
+                    "FKDPROP" => 73,
+                    "FPROPINSI" => "Sulawesi Selatan",
+                    "Jumlah_Pendaftar" => 14,
+                    "Jumlah_Diterima" => 13,
+                    "Jumlah_Regristrasi" => 13
+                ],
+                [
+                    "FKDPROP" => 74,
+                    "FPROPINSI" => "Sulawesi Tenggara",
+                    "Jumlah_Pendaftar" => 5,
+                    "Jumlah_Diterima" => 5,
+                    "Jumlah_Regristrasi" => 5
+                ],
+                [
+                    "FKDPROP" => 75,
+                    "FPROPINSI" => "Gorontalo",
+                    "Jumlah_Pendaftar" => 4,
+                    "Jumlah_Diterima" => 2,
+                    "Jumlah_Regristrasi" => 2
+                ],
+                [
+                    "FKDPROP" => 76,
+                    "FPROPINSI" => "Sulawesi Barat ",
+                    "Jumlah_Pendaftar" => 2,
+                    "Jumlah_Diterima" => 2,
+                    "Jumlah_Regristrasi" => 2
+                ],
+                [
+                    "FKDPROP" => 81,
+                    "FPROPINSI" => "Maluku",
+                    "Jumlah_Pendaftar" => 5,
+                    "Jumlah_Diterima" => 5,
+                    "Jumlah_Regristrasi" => 5
+                ],
+                [
+                    "FKDPROP" => 82,
+                    "FPROPINSI" => "Maluku Utara ",
+                    "Jumlah_Pendaftar" => 2,
+                    "Jumlah_Diterima" => 2,
+                    "Jumlah_Regristrasi" => 2
+                ],
+                [
+                    "FKDPROP" => 84,
+                    "FPROPINSI" => "Maluku Utara",
+                    "Jumlah_Pendaftar" => 0,
+                    "Jumlah_Diterima" => 0,
+                    "Jumlah_Regristrasi" => 0
+                ],
+                [
+                    "FKDPROP" => 85,
+                    "FPROPINSI" => "Irian Jaya Timur",
+                    "Jumlah_Pendaftar" => 0,
+                    "Jumlah_Diterima" => 0,
+                    "Jumlah_Regristrasi" => 0
+                ],
+                [
+                    "FKDPROP" => 86,
+                    "FPROPINSI" => "Irian Jaya Tengah",
+                    "Jumlah_Pendaftar" => 0,
+                    "Jumlah_Diterima" => 0,
+                    "Jumlah_Regristrasi" => 0
+                ],
+                [
+                    "FKDPROP" => 87,
+                    "FPROPINSI" => "Irian Jaya Barat",
+                    "Jumlah_Pendaftar" => 0,
+                    "Jumlah_Diterima" => 0,
+                    "Jumlah_Regristrasi" => 0
+                ],
+                [
+                    "FKDPROP" => 91,
+                    "FPROPINSI" => "Papua Barat ",
+                    "Jumlah_Pendaftar" => 15,
+                    "Jumlah_Diterima" => 13,
+                    "Jumlah_Regristrasi" => 13
+                ],
+                [
+                    "FKDPROP" => 92,
+                    "FPROPINSI" => "Papua ",
+                    "Jumlah_Pendaftar" => 0,
+                    "Jumlah_Diterima" => 0,
+                    "Jumlah_Regristrasi" => 0
+                ],
+                [
+                    "FKDPROP" => 94,
+                    "FPROPINSI" => "Papua Tengah",
+                    "Jumlah_Pendaftar" => 28,
+                    "Jumlah_Diterima" => 27,
+                    "Jumlah_Regristrasi" => 27
+                ],
+                [
+                    "FKDPROP" => 98,
+                    "FPROPINSI" => "Lainnya",
+                    "Jumlah_Pendaftar" => 0,
+                    "Jumlah_Diterima" => 0,
+                    "Jumlah_Regristrasi" => 0
+                ],
+                [
+                    "FKDPROP" => 99,
+                    "FPROPINSI" => "Luar Negeri",
+                    "Jumlah_Pendaftar" => 0,
+                    "Jumlah_Diterima" => 0,
+                    "Jumlah_Regristrasi" => 0
+                ]
+            ],
+            "rekap_total" => [
+                [
+                    "Pendaftar" => 9042,
+                    "Diterima" => 7839,
+                    "Regristrasi" => 7839
+                ]
+            ]
+        ];
+
+        $tr_total = '<tr>
+                        <td class="text-center">' . $data['rekap_total'][0]['Pendaftar'] . '</td>
+                        <td class="text-center">' . $data['rekap_total'][0]['Diterima'] . '</td>
+                        <td class="text-center">' . $data['rekap_total'][0]['Regristrasi'] . '</td>
+                    </tr>';
+
+        $tr_prov = '';
+        foreach ($data['provinsi'] as $key => $v) {
+            $tr_prov .= '<tr>
+                            <td>' . $v['FPROPINSI'] . '</td>
+                            <td class="text-center">' . $v['Jumlah_Pendaftar'] . '</td>
+                            <td class="text-center">' . $v['Jumlah_Diterima'] . '</td>
+                            <td class="text-center">' . $v['Jumlah_Regristrasi'] . '</td>
+                        </tr>';
+        }
+
+        $data = [
+            'tr_prov' => $tr_prov,
+            'tr_total' => $tr_total,
+            'tahun_awal' => $tahun,
+            // 'tahun_akhir' => $tahun_6
+
+        ];
+        echo json_encode($data);
+    }
+
+    public function update_chart_pendaftar()
+    {
+        // tangkap post data
+        $filter = $this->request->getPost('filter_chart');
+
+        $data_mentah = [
+            "success" => true,
+            "provinsi" => [
+                [
+                    "FKDPROP" => 11,
+                    "FPROPINSI" => "Nangro Aceh Darussalam",
+                    "Jumlah_Pendaftar" => 22,
+                    "Jumlah_Diterima" => 22,
+                    "Jumlah_Regristrasi" => 22
+                ],
+                [
+                    "FKDPROP" => 12,
+                    "FPROPINSI" => "Sumatra Utara",
+                    "Jumlah_Pendaftar" => 28,
+                    "Jumlah_Diterima" => 25,
+                    "Jumlah_Regristrasi" => 25
+                ],
+                [
+                    "FKDPROP" => 13,
+                    "FPROPINSI" => "Sumatra Barat",
+                    "Jumlah_Pendaftar" => 24,
+                    "Jumlah_Diterima" => 23,
+                    "Jumlah_Regristrasi" => 23
+                ],
+                [
+                    "FKDPROP" => 14,
+                    "FPROPINSI" => "Riau",
+                    "Jumlah_Pendaftar" => 59,
+                    "Jumlah_Diterima" => 57,
+                    "Jumlah_Regristrasi" => 57
+                ],
+                [
+                    "FKDPROP" => 15,
+                    "FPROPINSI" => "Jambi",
+                    "Jumlah_Pendaftar" => 49,
+                    "Jumlah_Diterima" => 45,
+                    "Jumlah_Regristrasi" => 45
+                ],
+                [
+                    "FKDPROP" => 16,
+                    "FPROPINSI" => "Sumatra Selatan",
+                    "Jumlah_Pendaftar" => 67,
+                    "Jumlah_Diterima" => 62,
+                    "Jumlah_Regristrasi" => 62
+                ],
+                [
+                    "FKDPROP" => 17,
+                    "FPROPINSI" => "Bengkulu",
+                    "Jumlah_Pendaftar" => 29,
+                    "Jumlah_Diterima" => 28,
+                    "Jumlah_Regristrasi" => 28
+                ],
+                [
+                    "FKDPROP" => 18,
+                    "FPROPINSI" => "Lampung",
+                    "Jumlah_Pendaftar" => 100,
+                    "Jumlah_Diterima" => 92,
+                    "Jumlah_Regristrasi" => 92
+                ],
+                [
+                    "FKDPROP" => 19,
+                    "FPROPINSI" => "Bangka Belitung",
+                    "Jumlah_Pendaftar" => 17,
+                    "Jumlah_Diterima" => 17,
+                    "Jumlah_Regristrasi" => 17
+                ],
+                [
+                    "FKDPROP" => 21,
+                    "FPROPINSI" => "Kepulauan Riau ",
+                    "Jumlah_Pendaftar" => 33,
+                    "Jumlah_Diterima" => 30,
+                    "Jumlah_Regristrasi" => 30
+                ],
+                [
+                    "FKDPROP" => 30,
+                    "FPROPINSI" => "Banten",
+                    "Jumlah_Pendaftar" => 0,
+                    "Jumlah_Diterima" => 0,
+                    "Jumlah_Regristrasi" => 0
+                ],
+                [
+                    "FKDPROP" => 31,
+                    "FPROPINSI" => "DKI Jakarta",
+                    "Jumlah_Pendaftar" => 60,
+                    "Jumlah_Diterima" => 54,
+                    "Jumlah_Regristrasi" => 54
+                ],
+                [
+                    "FKDPROP" => 32,
+                    "FPROPINSI" => "Jawa Barat",
+                    "Jumlah_Pendaftar" => 336,
+                    "Jumlah_Diterima" => 293,
+                    "Jumlah_Regristrasi" => 293
+                ],
+                [
+                    "FKDPROP" => 33,
+                    "FPROPINSI" => "Jawa Tengah",
+                    "Jumlah_Pendaftar" => 6633,
+                    "Jumlah_Diterima" => 5700,
+                    "Jumlah_Regristrasi" => 5700
+                ],
+                [
+                    "FKDPROP" => 34,
+                    "FPROPINSI" => "DI Yogyakarta",
+                    "Jumlah_Pendaftar" => 153,
+                    "Jumlah_Diterima" => 126,
+                    "Jumlah_Regristrasi" => 126
+                ],
+                [
+                    "FKDPROP" => 35,
+                    "FPROPINSI" => "Jawa Timur",
+                    "Jumlah_Pendaftar" => 920,
+                    "Jumlah_Diterima" => 806,
+                    "Jumlah_Regristrasi" => 806
+                ],
+                [
+                    "FKDPROP" => 36,
+                    "FPROPINSI" => "Banten",
+                    "Jumlah_Pendaftar" => 114,
+                    "Jumlah_Diterima" => 103,
+                    "Jumlah_Regristrasi" => 103
+                ],
+                [
+                    "FKDPROP" => 51,
+                    "FPROPINSI" => "Bali",
+                    "Jumlah_Pendaftar" => 11,
+                    "Jumlah_Diterima" => 11,
+                    "Jumlah_Regristrasi" => 11
+                ],
+                [
+                    "FKDPROP" => 52,
+                    "FPROPINSI" => "Nusa Tenggara Barat",
+                    "Jumlah_Pendaftar" => 40,
+                    "Jumlah_Diterima" => 34,
+                    "Jumlah_Regristrasi" => 34
+                ],
+                [
+                    "FKDPROP" => 53,
+                    "FPROPINSI" => "Nusa Tenggara Timur",
+                    "Jumlah_Pendaftar" => 26,
+                    "Jumlah_Diterima" => 21,
+                    "Jumlah_Regristrasi" => 21
+                ],
+                [
+                    "FKDPROP" => 61,
+                    "FPROPINSI" => "Kalimantan Barat",
+                    "Jumlah_Pendaftar" => 35,
+                    "Jumlah_Diterima" => 30,
+                    "Jumlah_Regristrasi" => 30
+                ],
+                [
+                    "FKDPROP" => 62,
+                    "FPROPINSI" => "Kalimantan Tengah",
+                    "Jumlah_Pendaftar" => 54,
+                    "Jumlah_Diterima" => 50,
+                    "Jumlah_Regristrasi" => 50
+                ],
+                [
+                    "FKDPROP" => 63,
+                    "FPROPINSI" => "Kalimantan Selatan",
+                    "Jumlah_Pendaftar" => 68,
+                    "Jumlah_Diterima" => 62,
+                    "Jumlah_Regristrasi" => 62
+                ],
+                [
+                    "FKDPROP" => 64,
+                    "FPROPINSI" => "Kalimantan Timur",
+                    "Jumlah_Pendaftar" => 52,
+                    "Jumlah_Diterima" => 45,
+                    "Jumlah_Regristrasi" => 45
+                ],
+                [
+                    "FKDPROP" => 65,
+                    "FPROPINSI" => "Kalimantan Utara",
+                    "Jumlah_Pendaftar" => 19,
+                    "Jumlah_Diterima" => 18,
+                    "Jumlah_Regristrasi" => 18
+                ],
+                [
+                    "FKDPROP" => 70,
+                    "FPROPINSI" => "Gorontalo",
+                    "Jumlah_Pendaftar" => 0,
+                    "Jumlah_Diterima" => 0,
+                    "Jumlah_Regristrasi" => 0
+                ],
+                [
+                    "FKDPROP" => 71,
+                    "FPROPINSI" => "Sulawesi Utara",
+                    "Jumlah_Pendaftar" => 11,
+                    "Jumlah_Diterima" => 10,
+                    "Jumlah_Regristrasi" => 10
+                ],
+                [
+                    "FKDPROP" => 72,
+                    "FPROPINSI" => "Sulawesi Tengah",
+                    "Jumlah_Pendaftar" => 7,
+                    "Jumlah_Diterima" => 6,
+                    "Jumlah_Regristrasi" => 6
+                ],
+                [
+                    "FKDPROP" => 73,
+                    "FPROPINSI" => "Sulawesi Selatan",
+                    "Jumlah_Pendaftar" => 14,
+                    "Jumlah_Diterima" => 13,
+                    "Jumlah_Regristrasi" => 13
+                ],
+                [
+                    "FKDPROP" => 74,
+                    "FPROPINSI" => "Sulawesi Tenggara",
+                    "Jumlah_Pendaftar" => 5,
+                    "Jumlah_Diterima" => 5,
+                    "Jumlah_Regristrasi" => 5
+                ],
+                [
+                    "FKDPROP" => 75,
+                    "FPROPINSI" => "Gorontalo",
+                    "Jumlah_Pendaftar" => 4,
+                    "Jumlah_Diterima" => 2,
+                    "Jumlah_Regristrasi" => 2
+                ],
+                [
+                    "FKDPROP" => 76,
+                    "FPROPINSI" => "Sulawesi Barat ",
+                    "Jumlah_Pendaftar" => 2,
+                    "Jumlah_Diterima" => 2,
+                    "Jumlah_Regristrasi" => 2
+                ],
+                [
+                    "FKDPROP" => 81,
+                    "FPROPINSI" => "Maluku",
+                    "Jumlah_Pendaftar" => 5,
+                    "Jumlah_Diterima" => 5,
+                    "Jumlah_Regristrasi" => 5
+                ],
+                [
+                    "FKDPROP" => 82,
+                    "FPROPINSI" => "Maluku Utara ",
+                    "Jumlah_Pendaftar" => 2,
+                    "Jumlah_Diterima" => 2,
+                    "Jumlah_Regristrasi" => 2
+                ],
+                [
+                    "FKDPROP" => 84,
+                    "FPROPINSI" => "Maluku Utara",
+                    "Jumlah_Pendaftar" => 0,
+                    "Jumlah_Diterima" => 0,
+                    "Jumlah_Regristrasi" => 0
+                ],
+                [
+                    "FKDPROP" => 85,
+                    "FPROPINSI" => "Irian Jaya Timur",
+                    "Jumlah_Pendaftar" => 0,
+                    "Jumlah_Diterima" => 0,
+                    "Jumlah_Regristrasi" => 0
+                ],
+                [
+                    "FKDPROP" => 86,
+                    "FPROPINSI" => "Irian Jaya Tengah",
+                    "Jumlah_Pendaftar" => 0,
+                    "Jumlah_Diterima" => 0,
+                    "Jumlah_Regristrasi" => 0
+                ],
+                [
+                    "FKDPROP" => 87,
+                    "FPROPINSI" => "Irian Jaya Barat",
+                    "Jumlah_Pendaftar" => 0,
+                    "Jumlah_Diterima" => 0,
+                    "Jumlah_Regristrasi" => 0
+                ],
+                [
+                    "FKDPROP" => 91,
+                    "FPROPINSI" => "Papua Barat ",
+                    "Jumlah_Pendaftar" => 15,
+                    "Jumlah_Diterima" => 13,
+                    "Jumlah_Regristrasi" => 13
+                ],
+                [
+                    "FKDPROP" => 92,
+                    "FPROPINSI" => "Papua ",
+                    "Jumlah_Pendaftar" => 0,
+                    "Jumlah_Diterima" => 0,
+                    "Jumlah_Regristrasi" => 0
+                ],
+                [
+                    "FKDPROP" => 94,
+                    "FPROPINSI" => "Papua Tengah",
+                    "Jumlah_Pendaftar" => 28,
+                    "Jumlah_Diterima" => 27,
+                    "Jumlah_Regristrasi" => 27
+                ],
+                [
+                    "FKDPROP" => 98,
+                    "FPROPINSI" => "Lainnya",
+                    "Jumlah_Pendaftar" => 0,
+                    "Jumlah_Diterima" => 0,
+                    "Jumlah_Regristrasi" => 0
+                ],
+                [
+                    "FKDPROP" => 99,
+                    "FPROPINSI" => "Luar Negeri",
+                    "Jumlah_Pendaftar" => 0,
+                    "Jumlah_Diterima" => 0,
+                    "Jumlah_Regristrasi" => 0
+                ]
+            ],
+            "rekap_total" => [
+                [
+                    "Pendaftar" => 9042,
+                    "Diterima" => 7839,
+                    "Regristrasi" => 7839
+                ]
+            ]
+        ];
+        // Simulated data, replace this with your actual data retrieval logic
+        $data_chart = [];
+        if ($filter == "all") {
+            $judul_chart = "Statistik Jumlah Diterima";
+            foreach ($data_mentah['provinsi'] as $key => $v) {
+                $data_chart[] = ["name" => $v['FPROPINSI'], "y" => $v['Jumlah_Diterima']];
+            }
+        } else {
+            foreach ($data_mentah['provinsi'] as $key => $v) {
+                if ($v['FKDPROP'] == $filter) {
+                    $judul_chart = $v['FPROPINSI'];
+                    $jumlah = $v['Jumlah_Pendaftar'] + $v['Jumlah_Diterima'] + $v['Jumlah_Regristrasi'];
+                    $data_chart[0] = ["name" => "Pendaftar", "y" => $v['Jumlah_Pendaftar'] / $jumlah * 100];
+                    $data_chart[1] = ["name" => "Diterima", "y" => $v['Jumlah_Diterima'] / $jumlah * 100];
+                    $data_chart[2] = ["name" => "Registrasi", "y" => $v['Jumlah_Regristrasi'] / $jumlah * 100];
+                }
+            }
+        }
+
+        $msg = [
+            "judul" => $judul_chart,
+            "data" => $data_chart
+        ];
+
+        // Encode the data as JSON
+        $json_data = json_encode($msg);
+
+        // Set the appropriate Content-Type header for JSON
+        header('Content-Type: application/json');
+
+        // Output the JSON data
+        echo $json_data;
     }
 }

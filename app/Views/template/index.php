@@ -8,6 +8,54 @@
   <link rel="shortcut icon" type="image/png" href="<?= base_url(); ?>/assets/images/logos/favicon.png" />
   <link rel="stylesheet" href="<?= base_url(); ?>/assets/css/styles.min.css" />
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <style>
+    .highcharts-figure,
+    .highcharts-data-table table {
+      min-width: 320px;
+      max-width: 800px;
+      margin: 1em auto;
+    }
+
+    .highcharts-data-table table {
+      font-family: Verdana, sans-serif;
+      border-collapse: collapse;
+      border: 1px solid #ebebeb;
+      margin: 10px auto;
+      text-align: center;
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .highcharts-data-table caption {
+      padding: 1em 0;
+      font-size: 1.2em;
+      color: #555;
+    }
+
+    .highcharts-data-table th {
+      font-weight: 600;
+      padding: 0.5em;
+    }
+
+    .highcharts-data-table td,
+    .highcharts-data-table th,
+    .highcharts-data-table caption {
+      padding: 0.5em;
+    }
+
+    .highcharts-data-table thead tr,
+    .highcharts-data-table tr:nth-child(even) {
+      background: #f8f8f8;
+    }
+
+    .highcharts-data-table tr:hover {
+      background: #f1f7ff;
+    }
+
+    input[type="number"] {
+      min-width: 50px;
+    }
+  </style>
 </head>
 
 <body>
@@ -35,7 +83,15 @@
             <li class="sidebar-item">
               <a class="sidebar-link" href="/" aria-expanded="false">
                 <span>
-                  <i class="ti ti-layout-dashboard"></i>
+                  <i class="fa fa-user-plus"></i>
+                </span>
+                <span class="hide-menu">Pendaftar Mahasiswa</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="/mahasiswa-angkatan" aria-expanded="false">
+                <span>
+                  <i class="fa fa-users"></i>
                 </span>
                 <span class="hide-menu">Mhs. per Angkatan</span>
               </a>
@@ -43,7 +99,7 @@
             <li class="sidebar-item">
               <a class="sidebar-link" href="/masuk-lulus" aria-expanded="false">
                 <span>
-                  <i class="ti ti-article"></i>
+                  <i class="fa fa-recycle"></i>
                 </span>
                 <span class="hide-menu">Mhs. Masuk dan Lulus</span>
               </a>
@@ -55,7 +111,7 @@
             <li class="sidebar-item">
               <a class="sidebar-link" href="/nilai-aik" aria-expanded="false">
                 <span>
-                  <i class="ti ti-alert-circle"></i>
+                  <i class="fa fa-sun-o"></i>
                 </span>
                 <span class="hide-menu">Nilai AIK</span>
               </a>
@@ -63,7 +119,7 @@
             <li class="sidebar-item">
               <a class="sidebar-link" href="/nilai-mkdu" aria-expanded="false">
                 <span>
-                  <i class="ti ti-cards"></i>
+                  <i class="fa fa-institution"></i>
                 </span>
                 <span class="hide-menu">Nilai MKDU</span>
               </a>
@@ -151,6 +207,7 @@
   <script src="<?= base_url(); ?>/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
   <script src="<?= base_url(); ?>/assets/libs/simplebar/dist/simplebar.js"></script>
   <script src="<?= base_url(); ?>/assets/js/dashboard.js"></script>
+  <script src="https://use.fontawesome.com/d241ccdcfe.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </body>
 

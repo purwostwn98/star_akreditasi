@@ -25,4 +25,14 @@ class Mahasiswa extends BaseController
         ];
         return view('mahasiswa/mhs_masuk_lulus', $data);
     }
+
+    public function pendaftar_mahasiswa(): string
+    {
+        $data = [
+            'title' => 'Pendaftar Mahasiswa UMS',
+            'tahun_now' => Time::now()->year,
+            'tahun_6' => Time::now()->year - 6
+        ];
+        return view('mahasiswa/pendaftar_ums', $data);
+    }
 }
