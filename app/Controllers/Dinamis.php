@@ -1432,7 +1432,7 @@ class Dinamis extends BaseController
         echo json_encode($data);
     }
 
-    public function update_chart_pendaftar()
+    public function update_piechart_pendaftar()
     {
         // tangkap post data
         $filter = $this->request->getPost('filter_chart');
@@ -1782,5 +1782,70 @@ class Dinamis extends BaseController
 
         // Output the JSON data
         echo $json_data;
+    }
+
+    public function update_linechart_pendaftar()
+    {
+        // tangkap post data
+        $tahun = $this->request->getPost('tahun');
+        $provinsi = $this->request->getPost('provinsi');
+        $prodi = $this->request->getPost('prodi');
+
+
+        //queri
+        // ambil jumlah pendaftar,diterima,registrasi where prodi = prodi, provinsi = provinsi, tahun = [2024,2023,2022,2021,2020]
+        // hasil query ke database
+        $data_mentah = [
+            "success" => true,
+            "provinsi" => "all",
+            "prodi" => "all",
+            "tahun" => 2024,
+            "rekap_total" => [
+                '2020' => [
+                    "Pendaftar" => 9042,
+                    "Diterima" => 7839,
+                    "Regristrasi" => 7839
+                ],
+                '2021' => [
+                    "Pendaftar" => 9100,
+                    "Diterima" => 7900,
+                    "Regristrasi" => 7901
+                ],
+                '2022' => [
+                    "Pendaftar" => 8100,
+                    "Diterima" => 7540,
+                    "Regristrasi" => 7550
+                ],
+                '2023' => [
+                    "Pendaftar" => 10033,
+                    "Diterima" => 8000,
+                    "Regristrasi" => 8002
+                ],
+                '2024' => [
+                    "Pendaftar" => 9800,
+                    "Diterima" => 8040,
+                    "Regristrasi" => 8050
+                ],
+            ]
+        ];
+        // Simulated data, replace this with your actual data retrieval logic
+        $data['pendaftar'] = [];
+        $data['diterima'] = [];
+        $data['regristrasi'] = [];
+        foreach ($data_mentah['rekap_total'] as $key => $v) {
+            $data['pendaftar'][] = $v['Pendaftar'];
+            $data['diterima'][] = $v['Diterima'];
+            $data['regristrasi'][] = $v['Regristrasi'];
+        };
+
+        $response = [
+            'judul' => 'Line Chart for ' . $tahun . '-' . strval($tahun - 4),
+            'data' => $data,
+            'tahun' => $tahun,
+            'pointStart' => $tahun - 4
+        ];
+
+        header('Content-Type: application/json');
+        echo json_encode($response);
     }
 }
