@@ -129,6 +129,196 @@ class Dinamis extends BaseController
         }
     }
 
+    public function load_tabel_keberhasilan()
+    {
+        $jenjang = [
+            1 => "Doktor",
+            2 => "Magister",
+            3 => "Profesi 1 Tauhun",
+            4 => "Profesi 2 Tauhun",
+            5 => "Sarjana",
+            6 => "Diploma Tiga",
+            7 => "Diploma Dua",
+            8 => "Diploma Satu"
+        ];
+
+        $jumlah_program_studi = [
+            1 => ["Jumlah Program Studi Program ", "a1 = Jumlah mahasiswa pada awal TS-6", "b1 = Jumlah mahasiswa pada akhir TS", "c1 = Jumlah lulusan s.d. akhir TS", "PPS1", "Skor Program"],
+            2 => ["Jumlah Program Studi Program ", "a2 = Jumlah mahasiswa pada awal TS-6", "b2 = Jumlah mahasiswa pada akhir TS", "c2 = Jumlah lulusan s.d. akhir TS", "PPS2",  "Skor Program"],
+            3 => ["Jumlah Program Studi Program ", "a31 = Jumlah mahasiswa pada awal TS-6", "b31 = Jumlah mahasiswa pada akhir TS", "c31 = Jumlah lulusan s.d. akhir TS", "PPS31",  "Skor Program"],
+            4 => ["Jumlah Program Studi Program ", "a32 = Jumlah mahasiswa pada awal TS-6", "b32 = Jumlah mahasiswa pada akhir TS", "c32 = Jumlah lulusan s.d. akhir TS", "PPS3b",  "Skor Program"],
+            5 => ["Jumlah Program Studi Program ", "a4 = Jumlah mahasiswa pada awal TS-6", "b4 = Jumlah mahasiswa pada akhir TS", "c4 = Jumlah lulusan s.d. akhir TS", "PPS4",  "Skor Program"],
+            6 => ["Jumlah Program Studi Program ", "a5 = Jumlah mahasiswa pada awal TS-6", "b5 = Jumlah mahasiswa pada akhir TS", "c5 = Jumlah lulusan s.d. akhir TS", "PPS5",  "Skor Program"],
+            7 => ["Jumlah Program Studi Program ", "a6 = Jumlah mahasiswa pada awal TS-6", "b6 = Jumlah mahasiswa pada akhir TS", "c6 = Jumlah lulusan s.d. akhir TS", "PPS6",  "Skor Program"],
+            8 => ["Jumlah Program Studi Program ", "a7 = Jumlah mahasiswa pada awal TS-6", "b7 = Jumlah mahasiswa pada akhir TS", "c7 = Jumlah lulusan s.d. akhir TS", "PPS7",  "Skor Program"]
+        ];
+
+        $angka = [
+            "1-0" => 6,
+            "1-1" => 47,
+            "1-2" => 12,
+            "1-3" => 31,
+            "1-4" => 66 . "%",
+            "1-5" => 4.6,
+
+            "2-0" => 6,
+            "2-1" => 47,
+            "2-2" => 12,
+            "2-3" => 31,
+            "2-4" => 66 . "%",
+            "2-5" => 4.6,
+
+            "3-0" => 6,
+            "3-1" => 47,
+            "3-2" => 12,
+            "3-3" => 31,
+            "3-4" => 66 . "%",
+            "3-5" => 4.6,
+
+            "4-0" => 6,
+            "4-1" => 47,
+            "4-2" => 12,
+            "4-3" => 31,
+            "4-4" => 66 . "%",
+            "4-5" => 4.6,
+
+            "5-0" => 6,
+            "5-1" => 47,
+            "5-2" => 12,
+            "5-3" => 31,
+            "5-4" => 66 . "%",
+            "5-5" => 4.6,
+
+            "6-0" => 6,
+            "6-1" => 47,
+            "6-2" => 12,
+            "6-3" => 31,
+            "6-4" => 66 . "%",
+            "6-5" => 4.6,
+
+            "7-0" => 6,
+            "7-1" => 47,
+            "7-2" => 12,
+            "7-3" => 31,
+            "7-4" => 66 . "%",
+            "7-5" => 4.6,
+
+            "8-0" => 6,
+            "8-1" => 47,
+            "8-2" => 12,
+            "8-3" => 31,
+            "8-4" => 66 . "%",
+            "8-5" => 4.6,
+        ];
+        $data = [
+            // 'arr_tahun' => $arr_tahun,
+            'jenjang' => $jenjang,
+            'kategori' => $jumlah_program_studi,
+            'angka' => $angka,
+            't' => "keberhasilan"
+        ];
+
+        $data = [
+            'tabel' => view("mahasiswa/dinamis/tabel_keberhasilan", $data)
+        ];
+        echo json_encode($data);
+    }
+
+    public function load_tabel_lulusan()
+    {
+        $jenjang = [
+            1 => "Doktor",
+            2 => "Magister",
+            3 => "Profesi 1 Tauhun",
+            4 => "Profesi 2 Tauhun",
+            5 => "Sarjana",
+            6 => "Diploma Tiga",
+            7 => "Diploma Dua",
+            8 => "Diploma Satu"
+        ];
+
+        $jumlah_program_studi = [
+            1 => ["Jumlah Program Studi Program ", "d1 = Jumlah mahasiswa pada awal TS-2", "e1 = Jumlah mahasiswa pada akhir TS", "f1 = Jumlah lulusan s.d. akhir TS", "PTW1", "Skor Program"],
+            2 => ["Jumlah Program Studi Program ", "d2 = Jumlah mahasiswa pada awal TS-2", "e2 = Jumlah mahasiswa pada akhir TS", "f2 = Jumlah lulusan s.d. akhir TS", "PTW2",  "Skor Program"],
+            3 => ["Jumlah Program Studi Program ", "d31 = Jumlah mahasiswa pada awal TS-2", "e31 = Jumlah mahasiswa pada akhir TS", "f31 = Jumlah lulusan s.d. akhir TS", "PTW31",  "Skor Program"],
+            4 => ["Jumlah Program Studi Program ", "d32 = Jumlah mahasiswa pada awal TS-2", "e32 = Jumlah mahasiswa pada akhir TS", "f32 = Jumlah lulusan s.d. akhir TS", "PTW3b",  "Skor Program"],
+            5 => ["Jumlah Program Studi Program ", "d4 = Jumlah mahasiswa pada awal TS-2", "e4 = Jumlah mahasiswa pada akhir TS", "f4 = Jumlah lulusan s.d. akhir TS", "PTW4",  "Skor Program"],
+            6 => ["Jumlah Program Studi Program ", "d5 = Jumlah mahasiswa pada awal TS-2", "e5 = Jumlah mahasiswa pada akhir TS", "f5 = Jumlah lulusan s.d. akhir TS", "PTW5",  "Skor Program"],
+            7 => ["Jumlah Program Studi Program ", "d6 = Jumlah mahasiswa pada awal TS-2", "e6 = Jumlah mahasiswa pada akhir TS", "f6 = Jumlah lulusan s.d. akhir TS", "PTW6",  "Skor Program"],
+            8 => ["Jumlah Program Studi Program ", "d7 = Jumlah mahasiswa pada awal TS-2", "e7 = Jumlah mahasiswa pada akhir TS", "f7 = Jumlah lulusan s.d. akhir TS", "PTW7",  "Skor Program"]
+        ];
+
+        $angka = [
+            "1-0" => 6,
+            "1-1" => 47,
+            "1-2" => 12,
+            "1-3" => 31,
+            "1-4" => 66 . "%",
+            "1-5" => 4.6,
+
+            "2-0" => 6,
+            "2-1" => 47,
+            "2-2" => 12,
+            "2-3" => 31,
+            "2-4" => 66 . "%",
+            "2-5" => 4.6,
+
+            "3-0" => 6,
+            "3-1" => 47,
+            "3-2" => 12,
+            "3-3" => 31,
+            "3-4" => 66 . "%",
+            "3-5" => 4.6,
+
+            "4-0" => 6,
+            "4-1" => 47,
+            "4-2" => 12,
+            "4-3" => 31,
+            "4-4" => 66 . "%",
+            "4-5" => 4.6,
+
+            "5-0" => 6,
+            "5-1" => 47,
+            "5-2" => 12,
+            "5-3" => 31,
+            "5-4" => 66 . "%",
+            "5-5" => 4.6,
+
+            "6-0" => 6,
+            "6-1" => 47,
+            "6-2" => 12,
+            "6-3" => 31,
+            "6-4" => 66 . "%",
+            "6-5" => 4.6,
+
+            "7-0" => 6,
+            "7-1" => 47,
+            "7-2" => 12,
+            "7-3" => 31,
+            "7-4" => 66 . "%",
+            "7-5" => 4.6,
+
+            "8-0" => 6,
+            "8-1" => 47,
+            "8-2" => 12,
+            "8-3" => 31,
+            "8-4" => 66 . "%",
+            "8-5" => 4.6,
+        ];
+        $data = [
+            // 'arr_tahun' => $arr_tahun,
+            'jenjang' => $jenjang,
+            'kategori' => $jumlah_program_studi,
+            'angka' => $angka,
+            't' => "lulusan"
+        ];
+
+        $data = [
+            'tabel' => view("mahasiswa/dinamis/tabel_keberhasilan", $data)
+        ];
+        echo json_encode($data);
+    }
+
     public function load_masuk_lulus()
     {
         $tahun = $this->request->getPost('tahun');

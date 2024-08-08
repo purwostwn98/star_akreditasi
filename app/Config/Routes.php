@@ -20,3 +20,5 @@ $routes->post('/dinamis/load_nilai_mkdu', 'Dinamis::load_nilai_mkdu');
 $routes->post('/dinamis/load_pendaftar_mahasiswa', 'Dinamis::load_pendaftar_mahasiswa');
 $routes->post('/dinamis/update_piechart_pendaftar', 'Dinamis::update_piechart_pendaftar');
 $routes->post('/dinamis/update_linechart_pendaftar', 'Dinamis::update_linechart_pendaftar');
+$routes->post('/dinamis/load_tabel_keberhasilan', 'Dinamis::load_tabel_keberhasilan');
+$routes->post('/dinamis/load_tabel_lulusan', 'Dinamis::load_tabel_lulusan');

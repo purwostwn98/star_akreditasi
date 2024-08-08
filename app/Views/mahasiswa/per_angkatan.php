@@ -34,6 +34,17 @@
         </div>
     </div>
 </div>
+
+<div class="row">
+    <div class="col-12 tabelKeberhasilan">
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 tabelLulusan">
+
+    </div>
+</div>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script>
     $(document).ready(function() {
@@ -55,6 +66,9 @@
             var prodi = $(".opt_prodi").val();
             load_mahasiswa_angkatan(jenjang, prodi, tahun);
         });
+
+        loadTabelKeberhasilan();
+        loadTabelLulusan();
 
     });
 </script>
@@ -98,6 +112,46 @@
             complete: function() {},
             success: function(response) {
                 $(".opt_prodi").html(response.opt);
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+            }
+        });
+        return false;
+    }
+
+    function loadTabelKeberhasilan() {
+        $.ajax({
+            url: "<?= site_url('dinamis/load_tabel_keberhasilan'); ?>",
+            type: "POST",
+            dataType: "json",
+            data: {
+                jenjang: "jenjang"
+            },
+            beforeSend: function() {},
+            complete: function() {},
+            success: function(response) {
+                $(".tabelKeberhasilan").html(response.tabel);
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+            }
+        });
+        return false;
+    }
+
+    function loadTabelLulusan() {
+        $.ajax({
+            url: "<?= site_url('dinamis/load_tabel_lulusan'); ?>",
+            type: "POST",
+            dataType: "json",
+            data: {
+                jenjang: "jenjang"
+            },
+            beforeSend: function() {},
+            complete: function() {},
+            success: function(response) {
+                $(".tabelLulusan").html(response.tabel);
             },
             error: function(xhr, ajaxOptions, thrownError) {
                 alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
